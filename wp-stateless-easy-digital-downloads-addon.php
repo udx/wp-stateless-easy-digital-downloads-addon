@@ -6,7 +6,7 @@
  * Description: Provides compatibility for Easy Digital Downloads with WP-Stateless.
  * Author: UDX
  * Version: 0.0.1
- * Text Domain: wpslea
+ * Text Domain: wpsedd
  * Author URI: https://udx.io
  * License: MIT
  * 

@@ -14,4 +14,4 @@ Provides compatibility between Easy Digital Downloads and WP-Stateless plugins.
 == Description ==
 
 Adds support for EDD direct download method (forced) for files located on GCS.
-Ensures ensures compatibility with image cropping (like author avatar) in the Stateless mode.
+Ensures compatibility with image cropping (like author avatar) in the Stateless mode.
