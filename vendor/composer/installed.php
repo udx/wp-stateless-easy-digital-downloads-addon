@@ -3,7 +3,7 @@
         'name' => 'udx/wp-stateless-easy-digital-downloads-addon',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '5c99273c73d2fc246e702334aacadf6b939f7f6d',
+        'reference' => '77eb35912de8d1ec8d50ef4b4a844af8e856ee05',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -319,7 +319,7 @@
         'udx/wp-stateless-easy-digital-downloads-addon' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '5c99273c73d2fc246e702334aacadf6b939f7f6d',
+            'reference' => '77eb35912de8d1ec8d50ef4b4a844af8e856ee05',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
