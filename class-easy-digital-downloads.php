@@ -1,9 +1,12 @@
 <?php
 
-namespace WPSL\EasyDigitalDownloads;
+namespace SLCA\EasyDigitalDownloads;
 
 use wpCloud\StatelessMedia\Compatibility;
 
+/**
+ * Class EasyDigitalDownloads
+ */
 class EasyDigitalDownloads extends Compatibility {
   protected $id = 'edd-download-method';
   protected $title = 'Easy Digital Downloads';
@@ -45,9 +48,13 @@ class EasyDigitalDownloads extends Compatibility {
         header("Content-Description: File Transfer");
         header("Content-disposition: attachment; filename=\"" . apply_filters('edd_requested_file_name', basename($requested_file)) . "\"");
 
-        readfile($requested_file);
+        global $wp_filesystem;
 
-        if ( !defined('WPSL_RUNNING_TESTS') ) {
+        if (isset($wp_filesystem)) {
+          $wp_filesystem->read($requested_file);
+        }
+
+        if ( !defined('SLCA_RUNNING_TESTS') ) {
           exit;
         }
       } catch (Exception $e) {
