@@ -1,6 +1,6 @@
 <?php
 
-namespace WPSL\EasyDigitalDownloads;
+namespace SLCA\EasyDigitalDownloads;
 
 use PHPUnit\Framework\TestCase;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
@@ -9,7 +9,6 @@ use Brain\Monkey\Actions;
 use Brain\Monkey\Filters;
 use Brain\Monkey\Functions;
 use wpCloud\StatelessMedia\WPStatelessStub;
-use WPSL\EasyDigitalDownloads\EasyDigitalDownloads;
 
 /**
  * Class ClassEasyDigitalDownloadsTest
@@ -66,7 +65,7 @@ class ClassEasyDigitalDownloadsTest extends TestCase {
   }
 
   public function testShouldSupportDownloadMethod() {
-    define('WPSL_RUNNING_TESTS', true);
+    define('SLCA_RUNNING_TESTS', true);
 
     $edd = new EasyDigitalDownloads();
 
@@ -121,8 +120,6 @@ function file_exists() {
 function header($header) {
   ClassEasyDigitalDownloadsTest::addHeader($header);
 }
-
-function readfile() {}
 
 function debug_backtrace() {
   return [

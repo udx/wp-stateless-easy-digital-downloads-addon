@@ -9,7 +9,7 @@ Provides compatibility between the [Easy Digital Downloads](https://wordpress.or
 
 ### Notes
 
-* Tested with Easy Digital Downloads plugin version 3.2.5
+* Tested with Easy Digital Downloads plugin version 3.2.9
 
 ### Support, Feedback, & Contribute
 
