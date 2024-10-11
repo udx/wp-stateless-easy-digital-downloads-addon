@@ -61,7 +61,15 @@ class ClassEasyDigitalDownloadsTest extends TestCase {
 
     self::assertNotFalse( has_action('edd_process_download_headers', [ $edd, 'edd_download_method_support' ]) );
     self::assertNotFalse( has_filter('wp_get_attachment_url', [ $edd, 'wp_get_attachment_url' ]) );
-    self::assertNotFalse( has_filter('upload_dir', [ $edd, 'upload_dir' ]) );
+  }
+
+  public function testShouldCountHooks() {
+    $edd = new EasyDigitalDownloads();
+
+    Functions\expect('add_action')->times(1);
+    Functions\expect('add_filter')->times(1);
+
+    $edd->module_init([]);
   }
 
   public function testShouldSupportDownloadMethod() {
@@ -93,20 +101,6 @@ class ClassEasyDigitalDownloadsTest extends TestCase {
       $edd->wp_get_attachment_url(self::AVATAR_SRC_URL, 15),
     );
   }
-   
-  public function testShouldHandleUploadsDir() {
-    $edd = new EasyDigitalDownloads();
- 
-    $GLOBALS['wp_current_filter'] = ['wp_ajax_fes_submit_profile_form'];
-
-    Functions\when('wp_get_attachment_metadata')->justReturn( ['file' => self::AVATAR_FILE] );
-
-    $data = $edd->upload_dir(['baseurl', self::UPLOADS_URL]);
-
-    $this->assertTrue(
-      array_key_exists('baseurl', $data) && $data['baseurl'] === WPStatelessStub::TEST_GS_HOST . '/uploads'
-    );
-  }
 }
 
 function function_exists() {
@@ -119,12 +113,4 @@ function file_exists() {
 
 function header($header) {
   ClassEasyDigitalDownloadsTest::addHeader($header);
-}
-
-function debug_backtrace() {
-  return [
-    '5' => [
-      'function' => 'fes_get_attachment_id_from_url',
-    ],
-  ];
 }

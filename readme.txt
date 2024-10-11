@@ -1,11 +1,11 @@
 === WP-Stateless - Easy Digital Downloads Addon ===
-Contributors: usability_dynamics, andypotanin, ideric, maxim.peshkov, planvova, obolgun
+Contributors: usability_dynamics, andypotanin, ideric, planvova, obolgun
 Donate link: https://udx.io
 Tags: easy digital downloads, easy digital downloads addon extension, google cloud storage, stateless, wp-stateless
 License: GPLv2 or later
 Requires PHP: 8.0
 Requires at least: 5.0
-Tested up to: 6.4.3
+Tested up to: 6.6.2
 Stable tag: 0.0.1
 
 Provides compatibility between the Easy Digital Downloads and the WP-Stateless plugins.
@@ -21,7 +21,7 @@ Provides compatibility between the [Easy Digital Downloads](https://wordpress.or
 
 = Notes =
 
-* Tested with Easy Digital Downloads plugin version 3.2.9
+* Tested with Easy Digital Downloads plugin version 3.3.4
 
 = Support, Feedback, & Contribute =
 
