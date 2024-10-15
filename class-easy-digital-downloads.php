@@ -20,11 +20,10 @@ class EasyDigitalDownloads extends Compatibility {
    */
   public function module_init( $sm ) {
     add_action('edd_process_download_headers', array($this, 'edd_download_method_support'), 10, 4);
+
     // the main filter to replace url with GCS url have 20 as priority in Bootstrap class.
     // FES Author Avatar need local file to work.
     add_filter('wp_get_attachment_url', array($this, 'wp_get_attachment_url'), 30, 2);
-    // Need to overwrite base_url unless fes_get_attachment_id_from_url won't work.
-    add_filter('upload_dir', array($this, 'upload_dir'));
   }
 
   /**
@@ -51,7 +50,7 @@ class EasyDigitalDownloads extends Compatibility {
         global $wp_filesystem;
 
         if (isset($wp_filesystem)) {
-          $wp_filesystem->read($requested_file);
+          $wp_filesystem->put_contents( 'php://output',  $wp_filesystem->get_contents($requested_file) );
         }
 
         if ( !defined('SLCA_RUNNING_TESTS') ) {
@@ -99,44 +98,5 @@ class EasyDigitalDownloads extends Compatibility {
       }
     }
     return $url;
-  }
-
-  /**
-   * Change Upload BaseURL when called from fes_get_attachment_id_from_url function.
-   * Unless fes_get_attachment_id_from_url function won't be able to return attachment id.
-   * @param $data
-   * @return mixed
-   */
-  public function upload_dir($data) {
-    if ($this->hook_from_fes()) {
-      $root_dir = ud_get_stateless_media()->get('sm.root_dir');
-      $root_dir = apply_filters("wp_stateless_handle_root_dir", $root_dir);
-      $data['baseurl'] = ud_get_stateless_media()->get_gs_host() . '/' . $root_dir;
-    }
-    return $data;
-  }
-
-  /**
-   * Determine where we hook from
-   * We need to do this only for fes_get_attachment_id_from_url() function
-   *
-   * @return bool
-   */
-  private function hook_from_fes() {
-    $call_stack = debug_backtrace();
-    if (!empty($call_stack[5]['function']) && $call_stack[5]['function'] == 'fes_get_attachment_id_from_url') {
-      return true;
-    }
-
-    // Extra layer of condition to be sure
-    if (!empty($call_stack) && is_array($call_stack)) {
-      foreach ($call_stack as $step) {
-        if ($step['function'] == 'getURLsAndPATHs' && strpos($step['file'], 'wp-short-pixel')) {
-          return true;
-        }
-      }
-    }
-
-    return false;
   }
 }
